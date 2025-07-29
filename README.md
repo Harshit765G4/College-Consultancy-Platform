@@ -141,7 +141,7 @@ const GEMINI_API_KEY = "PASTE_YOUR_ACTUAL_GEMINI_API_KEY_HERE";
 <img width="1905" height="929" alt="Screenshot 2025-07-29 200650" src="https://github.com/user-attachments/assets/57f8acfb-1218-4364-9410-b0b021deb2af" />
 
 ### 🧾 Application Form  
-<img width="1913" height="932" alt="Screenshot 2025-07-29 200743" src="https://github.com/user-attachments/assets/0d076c26-b8b0-455f-8fc3-47153d56ad2d" />
+<img width="1916" height="931" alt="Screenshot 2025-07-29 200926" src="https://github.com/user-attachments/assets/a231ce5f-2cf3-4b67-91a7-30a08120a8df" />
 
 ### 📊 Student Dashboard  
 <img width="1913" height="932" alt="Screenshot 2025-07-29 200743" src="https://github.com/user-attachments/assets/1de798a9-d8da-4c02-8034-bac1a9c5c57c" />
@@ -153,7 +153,7 @@ const GEMINI_API_KEY = "PASTE_YOUR_ACTUAL_GEMINI_API_KEY_HERE";
 <img width="1914" height="928" alt="Screenshot 2025-07-29 200807" src="https://github.com/user-attachments/assets/6811982f-78a6-4007-a405-d1a72a830ff2" />
 
 ### 🗂️ Document Upload for Verification  
-<img width="1916" height="931" alt="Screenshot 2025-07-29 200926" src="https://github.com/user-attachments/assets/b9ce22ad-2e65-486e-9f66-d8687318b33d" />
+<img width="1909" height="931" alt="Screenshot 2025-07-29 200914" src="https://github.com/user-attachments/assets/3e6ac849-c038-4ed2-b85d-5b1e1ffd5089" />
 
 ---
 
