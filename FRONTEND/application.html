@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Form - ConsultNet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .loading-spinner { border: 4px solid rgba(0, 0, 0, 0.1); border-left-color: #fcd34d; border-radius: 50%; width: 24px; height: 24px; animation: spin 1s linear infinite; display: inline-block; vertical-align: middle; margin-left: 8px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .message-box-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); display: flex; justify-content: center; align-items: center; z-index: 10000; }
+        .message-box-content { background-color: white; padding: 2rem; border-radius: 0.75rem; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); text-align: center; max-width: 400px; width: 90%; animation: fadeIn 0.3s ease-out; }
+        .message-box-content p { margin-bottom: 1.5rem; font-size: 1.125rem; color: #374151; }
+        .message-box-content button { background-color: #fcd34d; color: #1f2937; font-weight: 700; padding: 0.5rem 1.5rem; border-radius: 0.375rem; transition: background-color 0.3s; }
+        .message-box-content button:hover { background-color: #fbbf24; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <header class="bg-black text-white shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+             <div class="text-2xl font-bold">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <span class="bg-yellow-400 text-black rounded-full w-8 h-8 flex items-center justify-center font-mono">C</span>
+                    <span class="hidden sm:inline">ConsultNet</span>
+                </a>
+            </div>
+            <ul class="hidden md:flex items-center space-x-6">
+                <li><a href="index.html" class="hover:text-yellow-400 transition duration-300">Home</a></li>
+                <li><a href="dashboard.html" class="hover:text-yellow-400 transition duration-300">Dashboard</a></li>
+                <li><a href="contact.html" class="hover:text-yellow-400 transition duration-300">Contact</a></li>
+                <li id="auth-nav-container">
+                    <a href="login.html" class="hover:text-yellow-400 transition duration-300" id="auth-nav-link">Login</a>
+                    <a href="profile.html" class="hidden hover:text-yellow-400 transition duration-300" id="user-profile-link">My Profile</a>
+                </li>
+                <li><button id="logout-button" class="hidden bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-md transition duration-300">Logout</button></li>
+            </ul>
+             <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="index.html" class="block py-2 text-sm hover:text-yellow-400">Home</a>
+            <a href="dashboard.html" class="block py-2 text-sm hover:text-yellow-400">Dashboard</a>
+            <a href="contact.html" class="block py-2 text-sm hover:text-yellow-400">Contact</a>
+            <a href="login.html" class="block py-2 text-sm hover:text-yellow-400" id="mobile-auth-nav-link">Login</a>
+            <a href="profile.html" class="hidden block py-2 text-sm hover:text-yellow-400" id="mobile-user-profile-link">My Profile</a>
+            <button id="mobile-logout-button" class="hidden w-full text-left bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-md transition duration-300 mt-2">Logout</button>
+        </div>
+    </header>
+
+    <main class="fade-in">
+         <div class="container mx-auto px-6 py-12">
+            <div class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-lg">
+                <a href="index.html" class="text-sm text-gray-600 hover:text-black mb-6 inline-block">← Back to College List</a>
+                <h2 class="text-3xl font-bold mb-2">Application Form</h2>
+                <p class="text-gray-600 mb-1">You are applying to:</p>
+                <h3 id="applying-college-name" class="text-2xl font-semibold text-yellow-600 mb-8">Loading...</h3>
+                
+                <form id="application-form" class="space-y-6">
+                    <div>
+                        <h4 class="text-xl font-semibold border-b pb-2 mb-4">Personal Details</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="fullName-app" class="block text-sm font-medium text-gray-700">Full Name</label>
+                                <input type="text" id="fullName-app" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500">
+                            </div>
+                            <div>
+                                <label for="email-app" class="block text-sm font-medium text-gray-700">Email Address</label>
+                                <input type="email" id="email-app" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500">
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <label for="programOfInterest" class="block text-sm font-medium text-gray-700">Program of Interest</label>
+                            <input type="text" id="programOfInterest" placeholder="e.g., Computer Science, Business Administration" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500">
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-semibold border-b pb-2 mb-4">Required Documents</h4>
+                        <p class="text-sm text-gray-500 mb-4">This is a simulation. In a real application, you would upload your documents here for verification by the college.</p>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between bg-gray-100 p-3 rounded-md">
+                                <label for="transcript" class="text-sm font-medium text-gray-700">Academic Transcript</label>
+                                <input type="file" id="transcript" class="hidden">
+                                <button type="button" onclick="document.getElementById('transcript').click()" class="text-sm bg-gray-200 text-gray-800 px-3 py-1 rounded-md hover:bg-gray-300 transition">Choose File</button>
+                            </div>
+                            <div class="flex flex-col bg-gray-100 p-3 rounded-md">
+                                <label for="personalStatement" class="text-sm font-medium text-gray-700 mb-2">Personal Statement</label>
+                                <textarea id="personalStatement" rows="6" class="w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-yellow-500 focus:border-yellow-500"></textarea>
+                                <button type="button" id="generate-statement-btn" class="mt-3 bg-yellow-400 text-black font-bold py-2 px-4 rounded-md hover:bg-yellow-500 transition self-end text-sm">✨ Draft Personal Statement</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="submit" class="w-full bg-black text-yellow-400 font-bold py-3 px-4 rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 transition duration-300">Submit Application</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="bg-black text-white mt-16">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-400">
+            <p>© 2025 ConsultNet. All rights reserved.</p>
+            <p class="text-sm mt-2">A professional and approachable partner for your educational future.</p>
+        </div>
+    </footer>
+    
+    <script src="js/main.js"></script>
+</body>
+</html>
