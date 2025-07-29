@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   // --- GLOBAL VARIABLES & CONSTANTS ---
   const API_BASE_URL = "http://localhost:5000/api"; // Backend API base URL
-  const GEMINI_API_KEY = "AIzaSyCdi0D-kXXO0-OdFHD1gNgFRHaMjfNsdQc"; // IMPORTANT: Replace with your actual Gemini API Key
+  const GEMINI_API_KEY = "Enter Your API Key"; // IMPORTANT: Replace with your actual Gemini API Key
   let currentUser = null;
   let currentToken = null;
 
