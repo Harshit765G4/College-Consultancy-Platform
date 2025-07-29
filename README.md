@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-﻿
-=======
 # 🎓 ConsultNet - College Consultancy Platform 🚀
 
 ConsultNet is a full-stack web application that simplifies the process of connecting students with colleges and universities. It provides a consultancy platform for students to browse, apply, and interact with verified institutions based on various criteria like location and fee structure.
@@ -179,4 +176,3 @@ Developed with ❤️ by **Harshit Garg**
 
 If you found this useful, please ⭐ the repo!  
 Feel free to open issues or submit PRs.
->>>>>>> eb7de4eb57bcbafcd6b875b1224ce1da68884f8a
